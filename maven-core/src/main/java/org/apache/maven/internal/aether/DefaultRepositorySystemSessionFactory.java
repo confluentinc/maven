@@ -130,10 +130,7 @@ public class DefaultRepositorySystemSessionFactory
             new SimpleResolutionErrorPolicy( errorPolicy, errorPolicy | ResolutionErrorPolicy.CACHE_NOT_FOUND ) );
 
         session.setArtifactTypeRegistry( RepositoryUtils.newArtifactTypeRegistry( artifactHandlerManager ) );
-        if ( Boolean.parseBoolean( System.getProperty( "versionFilter", "" ) ) )
-        {
-            session.setVersionFilter( new HighestVersionFilter() );
-        }
+        session.setVersionFilter( new HighestVersionFilter() );
 
         LocalRepository localRepo = new LocalRepository( request.getLocalRepository().getBasedir() );
 
