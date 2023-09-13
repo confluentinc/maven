@@ -57,6 +57,7 @@ import org.eclipse.aether.repository.RepositoryPolicy;
 import org.eclipse.aether.repository.WorkspaceReader;
 import org.eclipse.aether.resolution.ResolutionErrorPolicy;
 import org.eclipse.aether.util.ConfigUtils;
+import org.eclipse.aether.util.graph.version.HighestVersionFilter;
 import org.eclipse.aether.util.listener.ChainedRepositoryListener;
 import org.eclipse.aether.util.repository.AuthenticationBuilder;
 import org.eclipse.aether.util.repository.ChainedLocalRepositoryManager;
@@ -181,6 +182,7 @@ public class DefaultRepositorySystemSessionFactory {
                 new SimpleResolutionErrorPolicy(errorPolicy, errorPolicy | ResolutionErrorPolicy.CACHE_NOT_FOUND));
 
         session.setArtifactTypeRegistry(RepositoryUtils.newArtifactTypeRegistry(artifactHandlerManager));
+        session.setVersionFilter( new HighestVersionFilter() );
 
         if (request.getWorkspaceReader() != null) {
             session.setWorkspaceReader(request.getWorkspaceReader());
